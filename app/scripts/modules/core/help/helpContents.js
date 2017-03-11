@@ -507,4 +507,13 @@ module.exports = angular.module('spinnaker.core.help.contents', [])
     'markdown.examples': 'Some examples of markdown syntax: <br/> *<em>emphasis</em>* <br/> **<b>strong</b>** <br/> [link text](http://url-goes-here)',
     'application.enableRestartRunningExecutions': 'When this option is enabled, users will be able to restart pipeline stages while a pipeline is still running. ' +
     'This behavior can have varying unexpected results and is <b>not recommended</b> to enable.',
+    'aws.serverGroup.lifecycleNotifications': `
+      Checking any of these options will create a <b>cluster-scoped</b> SNS topic and SQS queue that applications can consume to be notified of instance autoscaling activities. 
+      The SNS topic and SQS queue will be created in the same account/region as your server groups and named:<br/> <samp>spinnaker-autoscalingNotifications-{{ clusterName }}</samp><br/> 
+      <b>Note:</b> You currently will need to setup usage permissions for the SQS queue out-of-band.<br/>
+      <a target="_blank" href="http://docs.aws.amazon.com/autoscaling/latest/userguide/ASGettingNotifications.html">AWS AutoScaling Notification documentation</a>.`,
+    'aws.serverGroup.lifecycleNotifications.launch': 'Receive notifications of <b>successful</b> instance launch events.',
+    'aws.serverGroup.lifecycleNotifications.launchError': 'Receive notifications of <b>failed</b> instance launch events.',
+    'aws.serverGroup.lifecycleNotifications.terminate': 'Receive notifications of <b>successful</b> instance termination events.',
+    'aws.serverGroup.lifecycleNotifications.terminateError': 'Receive notifications of <b>failed</b> instance termination events.',
   });

@@ -76,6 +76,24 @@ module.exports = angular.module('spinnaker.aws.serverGroup.configure.service', [
           command.backingData.filtered.regions.some((region) => region.name === command.region && region.deprecated);
       };
 
+      command.toggleLifecycleNotification = (transition) => {
+        command.lifecycleHooks = command.lifecycleHooks || [];
+        var notificationIndex = _.findIndex(command.lifecycleHooks, function(lifecycle) {
+          return lifecycle.lifecycleTransition == transition;
+        });
+        if (notificationIndex === -1) {
+          command.lifecycleHooks.push({lifecycleTransition: transition});
+        } else {
+          command.lifecycleHooks.splice(notificationIndex, 1);
+        }
+      };
+
+      command.lifecycleNotificationEnabled = (transition) => {
+        return command.lifecycleHooks && _.some(command.lifecycleHooks, function(lifecycle) {
+            return lifecycle.lifecycleTransition === transition;
+          });
+      };
+
       return $q.all({
         credentialsKeyedByAccount: accountService.getCredentialsKeyedByAccount('aws'),
         securityGroups: securityGroupReader.getAllSecurityGroups(),

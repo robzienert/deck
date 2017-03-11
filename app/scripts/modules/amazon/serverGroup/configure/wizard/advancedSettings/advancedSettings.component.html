@@ -139,6 +139,50 @@
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <div class="col-md-5 sm-label-right">
+      <b>AutoScaling Notifications</b>
+      <help-field key="aws.serverGroup.lifecycleNotifications"></help-field>
+    </div>
+    <div class="col-md-6 checkbox">
+      <div>
+        <label>
+          <input type="checkbox"
+                 ng-click="$ctrl.command.toggleLifecycleNotification('autoscaling:EC2_INSTANCE_LAUNCH')"
+                 ng-checked="$ctrl.command.lifecycleNotificationEnabled('autoscaling:EC2_INSTANCE_LAUNCH')"/>
+          Launch
+          <help-field key="aws.serverGroup.lifecycleNotifications.launch"></help-field>
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="checkbox"
+                 ng-click="$ctrl.command.toggleLifecycleNotification('autoscaling:EC2_INSTANCE_LAUNCH_ERROR')"
+                 ng-checked="$ctrl.command.lifecycleNotificationEnabled('autoscaling:EC2_INSTANCE_LAUNCH_ERROR')"/>
+          Launch Error
+          <help-field key="aws.serverGroup.lifecycleNotifications.launchError"></help-field>
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="checkbox"
+                 ng-click="$ctrl.command.toggleLifecycleNotification('autoscaling:EC2_INSTANCE_TERMINATE')"
+                 ng-checked="$ctrl.command.lifecycleNotificationEnabled('autoscaling:EC2_INSTANCE_TERMINATE')"/>
+          Terminate
+          <help-field key="aws.serverGroup.lifecycleNotifications.terminate"></help-field>
+        </label>
+      </div>
+      <div>
+        <label>
+          <input type="checkbox"
+                 ng-click="$ctrl.command.toggleLifecycleNotification('autoscaling:EC2_INSTANCE_TERMINATE_ERROR')"
+                 ng-checked="$ctrl.command.lifecycleNotificationEnabled('autoscaling:EC2_INSTANCE_TERMINATE_ERROR')"/>
+          Terminate Error
+          <help-field key="aws.serverGroup.lifecycleNotifications.terminateError"></help-field>
+        </label>
+      </div>
+    </div>
+  </div>
   <div class="form-group" ng-if="$ctrl.application.attributes.platformHealthOnlyShowOverride">
     <div class="col-md-5 sm-label-right"><b>Task Completion</b></div>
     <div class="col-md-6">

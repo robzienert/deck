@@ -92,5 +92,24 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.aws.cloneServerGr
     this.processIsSuspended = (process) => {
       return stage.suspendedProcesses && stage.suspendedProcesses.includes(process);
     };
+
+    this.toggleLifecycleNotification = (transition) => {
+      console.log(transition);
+      stage.lifecycleHooks = stage.lifecycleHooks || [];
+      var notificationIndex = _.findIndex(stage.lifecycleHooks, function(lifecycle) {
+        return lifecycle.lifecycleTransition == transition;
+      });
+      if (notificationIndex === -1) {
+        stage.lifecycleHooks.push({lifecycleTransition: transition});
+      } else {
+        stage.lifecycleHooks.splice(notificationIndex, 1);
+      }
+    };
+
+    this.lifecycleNotificationEnabled = (transition) => {
+      return stage.lifecycleHooks && _.some(stage.lifecycleHooks, function(lifecycle) {
+          return lifecycle.lifecycleTransition === transition;
+        });
+    };
   });
 
